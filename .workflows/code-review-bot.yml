@@ -28,7 +28,7 @@ jobs:
       # Step 4: Run the code review script
       - name: Run code review bot
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for API access
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}  # OpenRouter API key
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # Use the personal access token
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          python scripts/code_review_bot.py
+          python code_review_bot.py
