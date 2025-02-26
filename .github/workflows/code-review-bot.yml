@@ -2,7 +2,7 @@ name: Automated Code Review Bot
 
 on:
   pull_request:
-    types: [opened, synchronize]  # Trigger on PR creation or update
+    types: [opened, synchronize]
 
 jobs:
   review-code:
@@ -28,7 +28,7 @@ jobs:
       # Step 4: Run the code review script
       - name: Run code review bot
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for API access
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}  # OpenRouter API key
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           python scripts/code_review_bot.py
