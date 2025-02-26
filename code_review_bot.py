@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from github import Github
 
@@ -8,7 +9,12 @@ g = Github(github_token)
 
 # Get the current repository and pull request
 repo_name = os.getenv('GITHUB_REPOSITORY')
-pr_number = int(os.getenv('GITHUB_REF').split('/')[-1])  # Extract PR number from ref
+
+# Load the event payload to extract the PR number
+with open(os.getenv('GITHUB_EVENT_PATH'), 'r') as f:
+    event_payload = json.load(f)
+
+pr_number = event_payload['pull_request']['number']  # Extract PR number
 repo = g.get_repo(repo_name)
 pr = repo.get_pull(pr_number)
 
