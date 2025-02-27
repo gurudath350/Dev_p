@@ -1,4 +1,4 @@
-name: Automated Code Review Bot
+ name: Automated Code Review Bot
 
 on:
   pull_request:
@@ -13,22 +13,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Python
+      # Step 2: Debug token
+      - name: Debug token
+        run: echo "Token: ${{ secrets.GH_PAT }}"
+
+      # Step 3: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      # Step 3: Install dependencies
+      # Step 4: Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests pygithub
-          
-          - name: Debug token
-  run: echo "Token: ${{ secrets.GH_PAT }}"
 
-      # Step 4: Run the code review script
+      # Step 5: Run the code review script
       - name: Run code review bot
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # Use the personal access token
