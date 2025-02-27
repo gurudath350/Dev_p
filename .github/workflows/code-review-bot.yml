@@ -15,7 +15,7 @@ jobs:
 
       # Step 2: Debug token
       - name: Debug token
-        run: echo "Token: ${{ secrets.GH_PAT }}"
+        run: echo "Token: ${{ secrets.GH_PAT }}";
 
       # Step 3: Set up Python
       - name: Set up Python
