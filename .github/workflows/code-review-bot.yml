@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize]  # Trigger on PR creation or update
 
-jobs:
+ jobs:
   review-code:
     runs-on: ubuntu-latest
 
@@ -25,8 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests pygithub
 
-          - name: Debug token
-  run:echo "Token: ${{ secrets.GH_PAT }}"
+        
 
       # Step 4: Run the code review script
       - name: Run code review bot
