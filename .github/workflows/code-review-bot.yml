@@ -13,7 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      
+      - name: Validate token
+  run: |
+    echo "Validating token..."
+    curl -H "Authorization: token ${{ secrets.GH_PAT }}" https://api.github.com/user
 
       # Step 3: Set up Python
       - name: Set up Python
