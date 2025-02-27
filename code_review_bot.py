@@ -5,6 +5,10 @@ from github import Github
 
 # Step 1: Authenticate with GitHub
 github_token = os.getenv('GITHUB_TOKEN')
+print(f"GitHub Token: {github_token}")  # Debugging line
+if not github_token:
+    raise ValueError("GITHUB_TOKEN is not set in the environment variables.")
+
 g = Github(github_token)
 
 # Get the current repository and pull request
@@ -60,5 +64,8 @@ ai_feedback = analyze_code_with_qwen(code_to_analyze)
 
 # Step 4: Post feedback as a comment
 comment = f"AI Review (Qwen2.5-VL-72B):\n\n{ai_feedback}"
-pr.create_issue_comment(comment)
-print("Comment posted successfully!")
+try:
+    pr.create_issue_comment(comment)
+    print("Comment posted successfully!")
+except Exception as e:
+    print(f"Failed to post comment: {e}")
