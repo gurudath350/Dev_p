@@ -9,7 +9,16 @@ print(f"GitHub Token: {github_token}")  # Debugging line
 if not github_token:
     raise ValueError("GITHUB_TOKEN is not set in the environment variables.")
 
+# Create a GitHub instance
 g = Github(github_token)
+
+# Test authentication by fetching the authenticated user
+try:
+    user = g.get_user()
+    print(f"Authenticated as: {user.login}")
+except Exception as e:
+    print(f"Authentication failed: {e}")
+    raise ValueError("Failed to authenticate with GitHub API.")
 
 # Get the current repository and pull request
 repo_name = os.getenv('GITHUB_REPOSITORY')
