@@ -26,7 +26,7 @@ jobs:
           pip install requests pygithub
 
           - name: Debug token
-  run: echo "Token: ${{ secrets.GH_PAT }}"
+  run:echo "Token: ${{ secrets.GH_PAT }}"
 
       # Step 4: Run the code review script
       - name: Run code review bot
